@@ -54,17 +54,19 @@ Os serviços são executados em containers Docker e se comunicam através de uma
 🛠️ Tecnologias utilizadas
 
 🐍 Python	Desenvolvimento da aplicação
-⚡ FastAPI	Construção da API REST
-🚀 Uvicorn	Servidor ASGI
-🗄️ PostgreSQL	Banco de dados relacional
-🔗 SQLAlchemy	ORM e comunicação com o banco
-✅ Pydantic	Validação e schemas dos dados
-🎨 Streamlit	Interface frontend
-🌐 Requests	Comunicação com a API
-📊 Pandas	Manipulação de dados
-🐳 Docker	Containerização
-🔧 Docker Compose	Orquestração dos serviços
-📦 Poetry	Gerenciamento de dependências
+⚡ FastAPI:	Construção da API REST
+🚀 Uvicorn:	Servidor ASGI
+🗄️ PostgreSQL:	Banco de dados relacional
+🔗 SQLAlchemy:	ORM e comunicação com o banco
+✅ Pydantic:	Validação e schemas dos dados
+🎨 Streamlit:	Interface frontend
+🌐 Requests: Comunicação com a API
+📊 Pandas:	Manipulação de dados
+🐳 Docker:	Containerização
+🔧 Docker Compose:	Orquestração dos serviços
+📦 Poetry:	Gerenciamento de dependências
+
+
 📂 Estrutura do projeto
 product-crud-api/
 │
@@ -86,6 +88,7 @@ product-crud-api/
 └── frontend/
     ├── Dockerfile
     └── ...
+
 🔙 Backend
 
 O backend é responsável por disponibilizar a API e realizar a comunicação com o banco de dados PostgreSQL.
@@ -148,6 +151,7 @@ Delete
 Exclusão de um produto:
 
 DELETE /products/{product_id}
+
 🐳 Executando com Docker
 Pré-requisitos
 
@@ -179,6 +183,7 @@ docker compose ps
 Para encerrar os serviços:
 
 docker compose down
+
 🌐 Acessando a aplicação
 
 Após iniciar os containers:
@@ -195,6 +200,7 @@ Através dela é possível visualizar e testar os endpoints da aplicação.
 
 Frontend
 http://localhost:8501
+
 📚 Principais aprendizados
 
 Durante o desenvolvimento deste projeto, pratiquei conceitos como:
@@ -214,6 +220,7 @@ Docker Compose
 Comunicação entre containers
 Gerenciamento de dependências com Poetry
 Organização e separação de responsabilidades em uma aplicação Python
+
 🚀 Relação com Engenharia de Dados
 
 Este projeto representa uma etapa do meu processo de transição profissional para Engenharia de Dados.
@@ -247,6 +254,7 @@ Data Lakes
 Docker
 Cloud
 Orquestração de pipelines
+
 📈 Próximos passos
 
 Algumas evoluções planejadas para este projeto ou para projetos futuros:
@@ -261,6 +269,7 @@ Algumas evoluções planejadas para este projeto ou para projetos futuros:
  Utilizar Airflow para orquestração
  Integrar dbt para transformação dos dados
  Evoluir a arquitetura para um projeto de Engenharia de Dados
+
 🎓 Referência de aprendizado
 
 Este projeto foi desenvolvido como parte dos meus estudos na Jornada de Dados, do Luciano Galvão, utilizando como base os conhecimentos apresentados nos conteúdos relacionados a Python, FastAPI, SQLAlchemy, PostgreSQL e Docker.
