@@ -39,17 +39,18 @@ Fluxo principal da aplicação:
 Os serviços são executados em containers Docker e se comunicam através de uma rede interna criada pelo Docker Compose.
 
 🛠️ Tecnologias
-Python
-FastAPI
-Uvicorn
-SQLAlchemy
-Pydantic
-PostgreSQL
-Streamlit
-Requests
-Pandas
-Docker / Docker Compose
-Poetry
+* **Python**
+* **FastAPI**
+* **Uvicorn**
+* **SQLAlchemy**
+* **Pydantic**
+* **PostgreSQL**
+* **Streamlit**
+* **Requests**
+* **Pandas**
+* **Docker / Docker Compose**
+* **Poetry**
+
 🎯 Objetivo
 
 Praticar conceitos de desenvolvimento com Python e construir uma aplicação capaz de realizar operações de CRUD sobre dados armazenados em um banco PostgreSQL.
@@ -60,32 +61,36 @@ O projeto também faz parte da construção do meu portfólio durante a transiç
 
 A API permite realizar as principais operações sobre os produtos:
 
-Create
+* Create
 
 Criação de um novo produto:
 
 POST /products/
-Read
+
+* Read
 
 Listagem dos produtos:
 
 GET /products/
 
-Consulta de um produto específico:
+* Consulta de um produto específico:
 
 GET /products/{product_id}
 Update
 
-Atualização de um produto:
+* Atualização de um produto:
 
 PUT /products/{product_id}
-Delete
+
+* Delete
 
 Exclusão de um produto:
 
 DELETE /products/{product_id}
+
+
 📂 Estrutura
-.
+
 ├── backend/
 │   ├── Dockerfile
 │   ├── crud.py
@@ -102,23 +107,24 @@ DELETE /products/{product_id}
 ├── pyproject.toml
 ├── poetry.lock
 └── README.md
+
 🔙 Backend
 
 O backend é responsável pela implementação da API e comunicação com o PostgreSQL.
 
-FastAPI
+* FastAPI
 
 Utilizado para construção da API REST e definição dos endpoints responsáveis pelas operações de CRUD.
 
-SQLAlchemy
+* SQLAlchemy
 
 Utilizado como ORM para realizar a comunicação entre a aplicação Python e o PostgreSQL.
 
-Pydantic
+* Pydantic
 
 Utilizado para validação dos dados recebidos pela API e definição dos schemas de entrada e saída.
 
-Uvicorn
+* Uvicorn
 
 Servidor ASGI utilizado para executar a aplicação FastAPI.
 
@@ -144,8 +150,10 @@ PostgreSQL
 
 Os serviços são executados em containers e conectados através de uma rede Docker compartilhada.
 
-🚀 Como Executar
-Pré-requisitos
+🚀 Como Executar:
+
+Pré-requisitos:
+
 Docker Desktop
 Git
 1. Clone o repositório
@@ -158,6 +166,7 @@ docker compose up --build
 Para executar em segundo plano:
 
 docker compose up --build -d
+
 4. Verifique os containers
 docker compose ps
 5. Para encerrar a aplicação
@@ -169,6 +178,7 @@ Após iniciar os containers:
 
 API
 http://localhost:8000
+
 Documentação da API
 
 O FastAPI disponibiliza automaticamente a documentação interativa através do Swagger:
@@ -195,7 +205,8 @@ Comunicação entre aplicação e banco de dados
 Docker e Docker Compose
 Variáveis de ambiente
 Gerenciamento de dependências com Poetry
-Organização e separação de responsabilidades em uma aplicação Python
+Organização e separação de responsabilidades em uma aplicação Python.
+
 🚀 Relação com Engenharia de Dados
 
 Este projeto representa uma das etapas do meu processo de transição para Engenharia de Dados.
