@@ -271,8 +271,14 @@ Atualmente desenvolvendo projetos práticos para aprofundar conhecimentos em:
 Python • SQL • PostgreSQL • ETL/ELT • Docker • Airflow • dbt • Engenharia de Dados
 
 🔗 Links
-LinkedIn
-GitHub
-Jornada de Dados
+
+GitHub:
+https://github.com/Dev-PPrado
+
+LinkedIn:
+https://www.linkedin.com/in/pedro-prado-34369a1b5
+
+Jornada de Dados:
+https://www.jornadadedados.com.br/
 
 ⭐ Projeto desenvolvido para fins de estudo, aprendizado e construção de portfólio em Engenharia de Dados.
