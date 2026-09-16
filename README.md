@@ -1,80 +1,91 @@
 # 🛒 Product CRUD API
 
-API REST para gerenciamento de produtos, desenvolvida com **Python e FastAPI**, utilizando **PostgreSQL** como banco de dados e **Docker** para containerização da aplicação.
+API REST para gerenciamento de produtos, desenvolvida como projeto de estudo durante minha jornada de transição para a área de **Engenharia de Dados**.
 
-Este projeto faz parte do meu **portfólio de aprendizado durante minha transição para a área de Engenharia de Dados**.
+O projeto utiliza **Python, FastAPI, SQLAlchemy, PostgreSQL e Docker**, com uma arquitetura separando a API, a camada de acesso aos dados e o banco de dados.
 
----
-
-## 📌 Sobre o projeto
-
-O projeto consiste em uma aplicação CRUD completa para gerenciamento de produtos, permitindo realizar operações de:
-
-- ➕ Criação de produtos
-- 🔎 Consulta de produtos
-- ✏️ Atualização de produtos
-- 🗑️ Exclusão de produtos
-
-A aplicação foi desenvolvida utilizando uma arquitetura separando as responsabilidades entre **API, regras de acesso aos dados e banco de dados**.
-
-O projeto foi desenvolvido durante meus estudos na **Jornada de Dados**, do **Luciano Galvão**, como forma de colocar em prática conceitos de Python, APIs, bancos de dados e Docker.
-
-> Este é um projeto de aprendizado. A implementação teve como referência os conteúdos estudados na Jornada de Dados e faz parte da minha evolução prática na construção de projetos para o portfólio de Engenharia de Dados.
+O desenvolvimento foi realizado durante meus estudos na **Jornada de Dados**, do **Luciano Galvão**, utilizando os conteúdos da formação como base para colocar em prática conceitos de Python, APIs, bancos de dados e Docker.
 
 ---
 
 ## 🏗️ Arquitetura
 
-```text
-                  ┌────────────────────┐
-                  │      Frontend      │
-                  │     Streamlit      │
-                  └─────────┬──────────┘
-                            │
-                            │ HTTP
-                            ▼
-                  ┌────────────────────┐
-                  │      Backend       │
-                  │      FastAPI       │
-                  │     Pydantic       │
-                  │     SQLAlchemy     │
-                  └─────────┬──────────┘
-                            │
-                            │ SQL
-                            ▼
-                  ┌────────────────────┐
-                  │     PostgreSQL     │
-                  │      Database      │
-                  └────────────────────┘
+Fluxo principal da aplicação:
 
-                       Docker Compose
+```text
+┌─────────────────┐
+│    Frontend     │
+│    Streamlit    │
+└────────┬────────┘
+         │
+         │ HTTP
+         ▼
+┌─────────────────┐
+│     Backend     │
+│     FastAPI     │
+│    Pydantic     │
+│    SQLAlchemy   │
+└────────┬────────┘
+         │
+         │ SQL
+         ▼
+┌─────────────────┐
+│    PostgreSQL   │
+│     Database    │
+└─────────────────┘
+
+      Docker Compose
 
 Os serviços são executados em containers Docker e se comunicam através de uma rede interna criada pelo Docker Compose.
 
-🛠️ Tecnologias utilizadas
+🛠️ Tecnologias
+Python
+FastAPI
+Uvicorn
+SQLAlchemy
+Pydantic
+PostgreSQL
+Streamlit
+Requests
+Pandas
+Docker / Docker Compose
+Poetry
+🎯 Objetivo
 
-🐍 Python	Desenvolvimento da aplicação
-⚡ FastAPI:	Construção da API REST
-🚀 Uvicorn:	Servidor ASGI
-🗄️ PostgreSQL:	Banco de dados relacional
-🔗 SQLAlchemy:	ORM e comunicação com o banco
-✅ Pydantic:	Validação e schemas dos dados
-🎨 Streamlit:	Interface frontend
-🌐 Requests: Comunicação com a API
-📊 Pandas:	Manipulação de dados
-🐳 Docker:	Containerização
-🔧 Docker Compose:	Orquestração dos serviços
-📦 Poetry:	Gerenciamento de dependências
+Praticar conceitos de desenvolvimento com Python e construir uma aplicação capaz de realizar operações de CRUD sobre dados armazenados em um banco PostgreSQL.
 
+O projeto também faz parte da construção do meu portfólio durante a transição para Engenharia de Dados, servindo como base para projetos futuros envolvendo APIs, integração de dados e pipelines.
 
-📂 Estrutura do projeto
-product-crud-api/
-│
-├── README.md
-├── docker-compose.yml
-├── pyproject.toml
-├── poetry.lock
-│
+🔄 Operações CRUD
+
+A API permite realizar as principais operações sobre os produtos:
+
+Create
+
+Criação de um novo produto:
+
+POST /products/
+Read
+
+Listagem dos produtos:
+
+GET /products/
+
+Consulta de um produto específico:
+
+GET /products/{product_id}
+Update
+
+Atualização de um produto:
+
+PUT /products/{product_id}
+Delete
+
+Exclusão de um produto:
+
+DELETE /products/{product_id}
+📂 Estrutura
+.
 ├── backend/
 │   ├── Dockerfile
 │   ├── crud.py
@@ -84,14 +95,16 @@ product-crud-api/
 │   ├── requirements.txt
 │   ├── router.py
 │   └── schemas.py
-│
-└── frontend/
-    ├── Dockerfile
-    └── ...
-
+├── frontend/
+│   ├── Dockerfile
+│   └── ...
+├── docker-compose.yml
+├── pyproject.toml
+├── poetry.lock
+└── README.md
 🔙 Backend
 
-O backend é responsável por disponibilizar a API e realizar a comunicação com o banco de dados PostgreSQL.
+O backend é responsável pela implementação da API e comunicação com o PostgreSQL.
 
 FastAPI
 
@@ -109,79 +122,45 @@ Uvicorn
 
 Servidor ASGI utilizado para executar a aplicação FastAPI.
 
-🗄️ Banco de dados
+🗄️ Banco de Dados
 
-O projeto utiliza PostgreSQL, executado através de um container Docker.
+O projeto utiliza PostgreSQL executado em um container Docker.
 
-A conexão com o banco é configurada através da variável de ambiente:
+A conexão com o banco é realizada através da variável de ambiente:
 
-DATABASE_URL
+DATABASE_URL=postgresql://user:password@postgres:5432/mydatabase
 
-Exemplo:
+O banco utiliza um volume Docker para permitir a persistência dos dados entre reinicializações dos containers.
 
-postgresql://user:password@postgres:5432/mydatabase
+🐳 Docker
 
-O PostgreSQL utiliza um volume Docker para permitir a persistência dos dados mesmo após a reinicialização dos containers.
+O projeto utiliza Docker Compose para executar e integrar os serviços da aplicação:
 
-🔄 Operações CRUD
+PostgreSQL
+    │
+    ├── Backend
+    │
+    └── Frontend
 
-A API disponibiliza as operações básicas de gerenciamento de produtos:
+Os serviços são executados em containers e conectados através de uma rede Docker compartilhada.
 
-Create
-
-Criação de novos produtos através de:
-
-POST /products/
-Read
-
-Listagem de produtos:
-
-GET /products/
-
-Consulta de um produto específico:
-
-GET /products/{product_id}
-Update
-
-Atualização de um produto:
-
-PUT /products/{product_id}
-Delete
-
-Exclusão de um produto:
-
-DELETE /products/{product_id}
-
-🐳 Executando com Docker
+🚀 Como Executar
 Pré-requisitos
-
-Para executar o projeto, é necessário ter instalado:
-
 Docker Desktop
 Git
-
-Clone o repositório:
-
+1. Clone o repositório
 git clone https://github.com/Dev-PPrado/product-crud-api.git
-
-Entre na pasta:
-
+2. Acesse o projeto
 cd product-crud-api
-
-Execute os serviços:
-
+3. Inicie os containers
 docker compose up --build
 
 Para executar em segundo plano:
 
 docker compose up --build -d
-
-Para verificar os containers:
-
+4. Verifique os containers
 docker compose ps
-
-Para encerrar os serviços:
-
+5. Para encerrar a aplicação
 docker compose down
 
 🌐 Acessando a aplicação
@@ -190,107 +169,110 @@ Após iniciar os containers:
 
 API
 http://localhost:8000
-Documentação interativa
+Documentação da API
 
-O FastAPI disponibiliza automaticamente a documentação da API através do Swagger:
+O FastAPI disponibiliza automaticamente a documentação interativa através do Swagger:
 
 http://localhost:8000/docs
 
-Através dela é possível visualizar e testar os endpoints da aplicação.
+Através da interface é possível visualizar e testar os endpoints da API.
 
 Frontend
 http://localhost:8501
 
-📚 Principais aprendizados
+📚 Aprendizados
 
-Durante o desenvolvimento deste projeto, pratiquei conceitos como:
+Durante o desenvolvimento deste projeto, pratiquei:
 
 Desenvolvimento de APIs REST com Python
 FastAPI
-HTTP e endpoints
 CRUD
 SQLAlchemy ORM
 PostgreSQL
-Modelagem de dados
-Pydantic e validação de dados
-Sessões e conexão com banco de dados
+Pydantic
+Modelagem e persistência de dados
+Comunicação entre aplicação e banco de dados
+Docker e Docker Compose
 Variáveis de ambiente
-Docker
-Docker Compose
-Comunicação entre containers
 Gerenciamento de dependências com Poetry
 Organização e separação de responsabilidades em uma aplicação Python
-
 🚀 Relação com Engenharia de Dados
 
-Este projeto representa uma etapa do meu processo de transição profissional para Engenharia de Dados.
+Este projeto representa uma das etapas do meu processo de transição para Engenharia de Dados.
 
-Embora o objetivo principal seja desenvolver uma API CRUD, o projeto me permitiu trabalhar com componentes que fazem parte do ecossistema de dados:
+A construção de uma API integrada a um banco de dados permitiu praticar conceitos importantes relacionados à integração, armazenamento e disponibilização de dados.
 
-              API
-               │
-               ▼
-             Python
-               │
-               ▼
-           PostgreSQL
-               │
-               ▼
-          Dados persistidos
-               │
-               ▼
-       Integração com pipelines
+A partir dessa base, meus próximos projetos serão direcionados para cenários mais próximos do dia a dia de Engenharia de Dados:
 
-A partir dessa base, meu objetivo é evoluir os projetos do portfólio para cenários cada vez mais próximos de Engenharia de Dados, trabalhando com:
+API
+ │
+ ▼
+Python
+ │
+ ▼
+PostgreSQL
+ │
+ ▼
+ETL / ELT
+ │
+ ▼
+Airflow / dbt
+ │
+ ▼
+Data Lake / Data Warehouse
 
-ETL e ELT
-SQL
-Airflow
-dbt
-Data Quality
-Modelagem de dados
-PySpark
-Data Lakes
-Docker
-Cloud
-Orquestração de pipelines
+🗺️ Roadmap
 
-📈 Próximos passos
+✅ Implementado
+* [x] API REST com FastAPI
+* [x] Operações CRUD
+* [x] SQLAlchemy
+* [x] PostgreSQL
+* [x] Pydantic
+* [x] Frontend com Streamlit
+* [x] Docker
+* [x] Docker Compose
+* [x] Gerenciamento de dependências com Poetry
 
-Algumas evoluções planejadas para este projeto ou para projetos futuros:
-
- Adicionar testes automatizados
- Implementar migrations com Alembic
- Melhorar tratamento de erros
- Implementar autenticação
- Adicionar testes de integração
- Implementar CI/CD
- Integrar a API com um pipeline de dados
- Utilizar Airflow para orquestração
- Integrar dbt para transformação dos dados
- Evoluir a arquitetura para um projeto de Engenharia de Dados
+🔜 Próximos Updates
+* [ ] Testes automatizados
+* [ ] Testes de integração
+* [ ] Migrations com Alembic
+* [ ] Melhorias no tratamento de erros
+* [ ] CI/CD
+* [ ] Integração com pipeline de dados
+* [ ] Orquestração com Apache Airflow
+* [ ] Transformações com dbt
+* [ ] Processamento com PySpark
+* [ ] Integração com Cloud
+* [ ] Evolução para uma arquitetura de Engenharia de Dados
 
 🎓 Referência de aprendizado
 
-Este projeto foi desenvolvido como parte dos meus estudos na Jornada de Dados, do Luciano Galvão, utilizando como base os conhecimentos apresentados nos conteúdos relacionados a Python, FastAPI, SQLAlchemy, PostgreSQL e Docker.
+Este projeto foi desenvolvido durante meus estudos na Jornada de Dados, do Luciano Galvão, utilizando como base os conteúdos relacionados a:
 
-A implementação faz parte do meu processo de aprendizado e construção de um portfólio voltado para Engenharia de Dados.
+Python
+FastAPI
+SQLAlchemy
+PostgreSQL
+Docker
+Desenvolvimento de APIs
 
-👨‍💻 Sobre mim
+A implementação faz parte do meu processo de aprendizado e da construção de um portfólio prático voltado para Engenharia de Dados.
 
-Sou formado em Engenharia de Controle e Automação e atualmente trabalho com suporte e sistemas em ambiente industrial.
+👨‍💻 Autor
 
-Estou realizando uma transição de carreira para a área de Dados, com foco em Engenharia de Dados, desenvolvendo projetos práticos para consolidar conhecimentos em Python, SQL, bancos de dados, ETL/ELT, Docker, Airflow, dbt e processamento de dados.
+Pedro Henrique de Souza Prado
 
-Este repositório faz parte dessa jornada.
+Engenheiro de Controle e Automação em transição para Engenharia de Dados.
+
+Atualmente desenvolvendo projetos práticos para aprofundar conhecimentos em:
+
+Python • SQL • PostgreSQL • ETL/ELT • Docker • Airflow • dbt • Engenharia de Dados
 
 🔗 Links
+LinkedIn
+GitHub
+Jornada de Dados
 
-GitHub:
-https://github.com/Dev-PPrado
-
-LinkedIn:
-https://www.linkedin.com/in/pedro-prado-34369a1b5
-
-Jornada de Dados:
-https://www.jornadadedados.com.br/
+⭐ Projeto desenvolvido para fins de estudo, aprendizado e construção de portfólio em Engenharia de Dados.
