@@ -52,7 +52,7 @@ O projeto foi desenvolvido durante meus estudos na **Jornada de Dados**, do **Lu
 Os serviços são executados em containers Docker e se comunicam através de uma rede interna criada pelo Docker Compose.
 
 🛠️ Tecnologias utilizadas
-Tecnologia	Utilização
+
 🐍 Python	Desenvolvimento da aplicação
 ⚡ FastAPI	Construção da API REST
 🚀 Uvicorn	Servidor ASGI
