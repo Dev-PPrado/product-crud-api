@@ -1,39 +1,47 @@
-version: '3.8'
 services:
+
   postgres:
-    image: postgres:latest
+    image: postgres:16
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: mydatabase
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user -d mydatabase"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     networks:
       - mynetwork
 
   backend:
-    build: 
+    build:
       context: ./backend
       dockerfile: Dockerfile
     volumes:
       - ./backend:/app
     environment:
-      DATABASE_URL: postgresql://user:password@postgres/mydatabase
+      DATABASE_URL: postgresql://user:password@postgres:5432/mydatabase
     ports:
       - "8000:8000"
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     networks:
       - mynetwork
 
   frontend:
-    build: 
+    build:
       context: ./frontend
       dockerfile: Dockerfile
     volumes:
       - ./frontend:/app
     ports:
       - "8501:8501"
+    depends_on:
+      - backend
     networks:
       - mynetwork
 

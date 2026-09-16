@@ -1,17 +1,14 @@
-# Dockerfile-frontend
+FROM python:3.14-slim
 
-# Imagem base
-FROM python:3.9
-
-# Definir o diretório de trabalho no container
 WORKDIR /app
 
-# Copiar os arquivos de dependências e instalar
-COPY requirements.txt /app/requirements.txt
-RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
+RUN pip install --no-cache-dir poetry
 
-# Copiar o restante dos arquivos do projeto
-COPY . /app
+COPY pyproject.toml poetry.lock* ./
 
-# Comando para executar a aplicação
-CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+RUN poetry config virtualenvs.create false \
+    && poetry install --no-interaction --no-ansi
+
+COPY . .
+
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
