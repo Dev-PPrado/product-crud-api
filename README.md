@@ -287,7 +287,7 @@ GitHub:
 https://github.com/Dev-PPrado
 
 LinkedIn:
-https://www.linkedin.com/in/pedro-prado-34369a1b5
+www.linkedin.com/in/pedro-hsprado-dataengineer
 
 Jornada de Dados:
 https://www.jornadadedados.com.br/
